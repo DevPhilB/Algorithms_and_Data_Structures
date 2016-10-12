@@ -1,7 +1,7 @@
 package problemset2;
 
 /**
- * Exercise 1:
+ * Exercise 2:
  * 
  * @author Philipp Backes, 191710
  * @author Homa Alavi, 191720
