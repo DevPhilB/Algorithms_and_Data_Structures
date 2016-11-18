@@ -1,12 +1,29 @@
 package problemset5;
 
 /*
- * For Exercise 2 Code from slides
+ * For Exercise 2 Code from slides with some additions
  */
 class Perm extends Thread {
   private int[] a; // a Arbeitsarray
   private int max; // maximaler Index
   private boolean mayread = false; // Kontrolle
+  static int permCounter = 0;
+  static int p = 10;
+  //static int arrayCounter = 0;
+  //static int permCounterArray[] = new int[p];
+
+  /**
+   * @param args
+   */
+  public static void main(String[] args) {
+    Perm permThread = new Perm(p);
+    int[] next = permThread.getNext();
+    while (next != null) {
+        next = permThread.getNext();
+    }
+    System.out.println("Counter : " + permCounter);
+    //System.out.println("Last counter in Array : " + permCounterArray[p]);
+  }
 
   Perm(int n) { // Konstruktor
     a = new int[n]; // Indices: 0 .. n-1
@@ -17,15 +34,18 @@ class Perm extends Thread {
   } // end Konstruktor
 
   public void run() {// die Arbeits-Methode
-    perm(1); // a[0] bleibt fest; permutiere ab 1
+    perm(0); // a[0] bleibt fest; permutiere ab 0
     a = null; // Anzeige, dass fertig
     put(); // ausliefern
   } // end run
+  // ...
 
   private void perm(int i) { // permutiere ab Index i
-    if (i >= max)
+    permCounter++;
+    if (i >= max) {
+      //permCounterArray[arrayCounter] = permCounter; 
       put(); // eine Permutation fertig
-    else {
+    } else {
       for (int j = i; j <= max; j++) { // jedes nach Vorne
         swap(i, j); // vertauschen
         perm(i + 1); // und Rekursion
@@ -44,6 +64,7 @@ class Perm extends Thread {
     }
   } // end swap
 
+  // ...
   synchronized int[] getNext() { // liefert naechste Permutation
     mayread = false; // a darf geaendert werden
     notify(); // wecke anderen Thread
@@ -59,10 +80,14 @@ class Perm extends Thread {
     mayread = true; // a wird gelesen
     notify(); // wecke anderen Thread
     try {
-      if (a != null)
-        while (mayread)
+      if (a != null) {
+        while (mayread) {
           wait(); // non busy waiting
+        }
+      }
     } catch (InterruptedException e) {
     }
   } // end put
 } // Perm
+
+
