@@ -5,6 +5,10 @@ package problemset6;
  * left right neigbors, and column header can also be used as colm header or root of column headers
  * matrix is sparsely coded try to do all operations very efficiently see:
  * http://en.wikipedia.org/wiki/Dancing_Links http://arxiv.org/abs/cs/0011047
+ * 
+ * @author Alois P. Heinz
+ * 
+ * Added some static and public members
  */
 public class DLXNode { // represents 1 element or header
   DLXNode C; // reference to column-header
@@ -17,7 +21,7 @@ public class DLXNode { // represents 1 element or header
   // Static members
   static DLXNode headerNode; //
   static DLXNode[] headerArray; //
-  static long counter; 
+  static long counter; //
   
   // Public members
   public int headerPosition; 
