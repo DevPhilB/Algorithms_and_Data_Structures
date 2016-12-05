@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Program takes a natural number (n) from user input and calculates all possibilities for placing
  * Pentominos (X, U, L) and Monominos (M) inside a 6 X n field. 
- * Condition: Pentominos can be rotated or reflected
+ * Extra condition: Pentominos can be rotated or reflected
  * 
  * @author Philipp Backes, 191710
  * @author Homa Alavi, 191720
@@ -446,10 +446,10 @@ public class DLXPentominoXULM {
     program.createHeaderNodes(program.cellAmount); // Create all header nodes
 
     // Calculate all figure positions
-    program.createMonomino(); // Monominos
-    program.createAndCalculateX(); // X-Pentomino
-    program.createAndCalculateU(); // U-Pentomino
-    program.createAndCalculateL(); // L-Pentomino
+    program.createAndCalculateX();  // X-Pentomino
+    program.createAndCalculateU();  // U-Pentomino
+    program.createAndCalculateL();  // L-Pentomino
+    program.createMonomino();       // Monominos
 
     // Start DLX search
     DLXNode.search(42); // No effect for changing k...
