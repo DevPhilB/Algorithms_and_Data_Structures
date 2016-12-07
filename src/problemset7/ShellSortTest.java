@@ -19,17 +19,18 @@ public class ShellSortTest {
    */
   public static void main(String[] args) {
     //
-    char[] chain = new char[]{'2', '6', '3'};
+    char[] chain = new char[20];
     shellSort(chain);
     System.out.println("Number of calls of insertionSort: " + counter);
   }
 
   /**
-   * Insertion Sort
-   * @param a
-   * @param h
+   * Custom Insertion Sort
+   * @param a Array
+   * @param h Distance
    */
   private static void insertionSortH(char[] a, int h) {
+    counter++;
     int i, hi = a.length - 1;
     for (int k = h; k <= hi; k++) // Start with h
       if (a[k - h] > a[k]) { // Compare with distance h
@@ -44,14 +45,13 @@ public class ShellSortTest {
   
   /**
    * Shell Sort
-   * @param a
+   * @param a Array
    */
   public static void shellSort(char[] a) {
     int h, hmax, hi = a.length - 1;
-    // hmax = 1, 4, 13, 40, 121, 364, 1093 .., 3*hmax+1
+    // hmax = 1, 4, 13, 40, 121, 364, 1093 .., 3 * hmax+1
     for (hmax = 1; hmax < hi; hmax = 3 * hmax + 1);
     for (h = hmax / 3; h > 0; h /= 3) {
-      counter++;
       insertionSortH(a, h);
     }
   }
